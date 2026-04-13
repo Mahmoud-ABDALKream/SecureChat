@@ -1,0 +1,16 @@
+{
+  "name": "secure-messaging-app",
+  "version": "1.0.0",
+  "description": "Full-stack secure messaging application with RSA encryption",
+  "scripts": {
+    "install-all": "cd client && npm install && cd ../server && npm install",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && echo 'Server build complete'",
+    "vercel-build": "cd client && npm install && npm run build && cd ../server && npm install"
+  },
+  "keywords": ["messaging", "encryption", "rsa", "react", "nodejs"],
+  "author": "",
+  "license": "ISC"
+}

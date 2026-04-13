@@ -328,6 +328,100 @@ For production deployment:
 6. **Logging**: Implement proper logging and monitoring
 7. **Input Validation**: Add comprehensive input validation
 
+## Deployment to Vercel
+
+This application is configured for deployment on Vercel with a monorepo structure.
+
+### Prerequisites
+
+- MongoDB Atlas account (free tier available at https://cloud.mongodb.com)
+- Vercel account (free tier available at https://vercel.com)
+
+### Step 1: Set up MongoDB Atlas
+
+1. Create a free MongoDB Atlas cluster
+2. Get your connection string (looks like: `mongodb+srv://username:password@cluster.mongodb.net/dbname`)
+3. Whitelist all IP addresses (0.0.0.0/0) for serverless access
+
+### Step 2: Deploy Backend to Vercel
+
+1. Install Vercel CLI:
+   ```bash
+   npm i -g vercel
+   ```
+
+2. Navigate to the server directory and deploy:
+   ```bash
+   cd /workspace/server
+   vercel login
+   vercel --prod
+   ```
+
+3. Set environment variables in Vercel dashboard:
+   - `MONGODB_URI`: Your MongoDB Atlas connection string
+   - `JWT_SECRET`: A secure random string (e.g., `openssl rand -hex 32`)
+   - `JWT_EXPIRE`: Token expiration (e.g., `1h`)
+   - `ENCRYPTION_KEY_SECRET`: Another secure random string
+   - `CLIENT_URL`: Your frontend URL (after deploying client)
+   - `VERCEL`: Set to `true` (automatically set by Vercel)
+
+### Step 3: Deploy Frontend to Vercel
+
+1. Navigate to the client directory and deploy:
+   ```bash
+   cd /workspace/client
+   vercel --prod
+   ```
+
+2. Set environment variables in Vercel dashboard:
+   - `VITE_API_URL`: Your backend API URL (from Step 2)
+
+### Alternative: Deploy as Monorepo
+
+Deploy the entire project from the root:
+
+```bash
+cd /workspace
+vercel --prod
+```
+
+Set all environment variables in the Vercel dashboard.
+
+### Environment Variables Summary
+
+**Server (.env):**
+```env
+MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/secure-messaging
+JWT_SECRET=your-super-secret-jwt-key-min-32-chars
+JWT_EXPIRE=1h
+ENCRYPTION_KEY_SECRET=your-encryption-key-secret-min-32-chars
+CLIENT_URL=https://your-frontend.vercel.app
+VERCEL=true
+```
+
+**Client (.env):**
+```env
+VITE_API_URL=https://your-backend.vercel.app/api
+```
+
+### Testing After Deployment
+
+1. Visit your deployed frontend URL
+2. Register two test users
+3. Send messages between them
+4. Verify encryption works by checking the database (only ciphertext should be visible)
+
+## Local Development vs Vercel
+
+| Feature | Local Development | Vercel Production |
+|---------|------------------|-------------------|
+| Server | Runs on port 5000 | Serverless functions |
+| Database | Local MongoDB | MongoDB Atlas |
+| API URL | `/api` (proxied) | Full URL to Vercel function |
+| Hot Reload | Enabled | Disabled |
+| DB Connection | Persistent | Connection pooling/caching |
+
+
 ## License
 
 MIT License - Feel free to use and modify for your projects.
