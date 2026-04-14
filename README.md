@@ -1,92 +1,93 @@
-🔐 SecureChat – Encrypted Messaging Web App
+🔐 SecureChat
+Secure Messaging Web Application
 
-A modern secure messaging web application that allows users to communicate safely using encryption and secure authentication techniques.
+A modern web-based secure messaging application that enables users to communicate safely using encryption and secure authentication techniques.
 
-This project demonstrates the practical use of password hashing and encryption to protect sensitive data.
+This project demonstrates the practical application of Cryptography concepts such as password hashing and message encryption.
 
 🚀 Features
-👤 User Registration & Login
-🔑 Secure password hashing using bcrypt
-🔐 Encrypted messaging system
-💬 Real-time style chat interface
-📩 Send & receive secure messages
-📱 Responsive modern UI (Tailwind CSS)
+👤 User Registration
+🔐 Secure Login Authentication
+🔑 Password Hashing using bcrypt
+💬 Encrypted Messaging System
+🔒 RSA Encryption using node-forge
+📩 Send & Receive Secure Messages
+📱 Responsive UI (React + Tailwind CSS)
 🛠️ Tech Stack
 Frontend
-React (with TypeScript)
+React (TypeScript)
 Vite
 Tailwind CSS
-Backend (inside project or API layer)
+Backend
 Node.js
 Express.js
-Security
-bcrypt → Password hashing
-node-forge → RSA encryption
+Security Libraries
+bcrypt
+node-forge
 📁 Project Structure
 SecureChat/
 │
-├── src/              # React source code
-├── dist/             # Production build
-├── index.html        # Entry HTML
+├── src/                # Frontend source code
+├── dist/               # Production build
+├── index.html
 ├── package.json
 ├── tailwind.config.js
 ├── vite.config.ts
 └── README.md
 🔐 Security Implementation
-1. Password Hashing (bcrypt)
+🔑 Password Hashing
 Passwords are never stored in plain text
-Before saving:
+Using bcrypt with salt:
 const hashedPassword = await bcrypt.hash(password, 10);
 During login:
-Entered password is compared with stored hash
-2. Encryption (RSA)
+The entered password is compared with the stored hash
+🔒 RSA Encryption
 
-This application uses RSA (Asymmetric Encryption) via node-forge.
+This application uses Asymmetric Encryption (RSA).
 
-How it works:
-Each user has:
-🔓 Public Key
-🔒 Private Key
-Message Flow:
-Sender writes a message
+🔁 Encryption Process:
+Each user gets:
+Public Key 🔓
+Private Key 🔒
+When sending a message:
 Message is encrypted using receiver’s public key
-Encrypted message is stored
-Receiver decrypts using private key
+When receiving:
+Message is decrypted using receiver’s private key
 
-✅ Only the intended receiver can read the message
+✅ This ensures that only the intended user can read the message.
 
 ▶️ How to Run the Project
-1. Clone the repository
+1. Clone the Repository
 git clone https://github.com/Mahmoud-ABDALKream/SecureChat.git
 cd SecureChat
-2. Install dependencies
+2. Install Dependencies
 npm install
-3. Run development server
+3. Run the Project
 npm run dev
-4. Open in browser
+4. Open in Browser
 http://localhost:5173
-🧪 Application Workflow
-Register a new account
-Login securely
-Select another user
-Send a message
+🧪 How It Works
+User registers an account
+Password is hashed using bcrypt
+User logs in securely
+User sends a message
 Message is:
 🔒 Encrypted before storage
-🔓 Decrypted on display
-🎯 Learning Objectives
-Apply Cryptography concepts
-Understand hashing vs encryption
-Implement RSA encryption in real apps
-Build secure full-stack applications
-⚠️ Notes
-All stored messages are encrypted
-Passwords are securely hashed
-No sensitive data is stored in plain text
-📌 Future Improvements
-🔄 Real-time chat using Socket.io
+🔓 Decrypted when displayed
+🎯 Learning Outcomes
+Apply real-world cryptographic techniques
+Understand difference between hashing and encryption
+Implement secure authentication systems
+Build a modern full-stack web application
+⚠️ Important Notes
+All passwords are securely hashed
+All messages are stored in encrypted form
+No sensitive data is stored as plain text
+🔮 Future Improvements
+🔄 Real-time messaging (Socket.io)
 🔐 Encrypt private keys with user password
-🌙 Dark mode UI
-🔑 JWT authentication
+🌙 Dark mode
+🔑 JWT Authentication
 👨‍💻 Author
 
 Mahmoud Abdelkarim
