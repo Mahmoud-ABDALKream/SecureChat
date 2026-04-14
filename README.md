@@ -1,73 +1,92 @@
-# React + TypeScript + Vite
+🔐 SecureChat – Encrypted Messaging Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern secure messaging web application that allows users to communicate safely using encryption and secure authentication techniques.
 
-Currently, two official plugins are available:
+This project demonstrates the practical use of password hashing and encryption to protect sensitive data.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Features
+👤 User Registration & Login
+🔑 Secure password hashing using bcrypt
+🔐 Encrypted messaging system
+💬 Real-time style chat interface
+📩 Send & receive secure messages
+📱 Responsive modern UI (Tailwind CSS)
+🛠️ Tech Stack
+Frontend
+React (with TypeScript)
+Vite
+Tailwind CSS
+Backend (inside project or API layer)
+Node.js
+Express.js
+Security
+bcrypt → Password hashing
+node-forge → RSA encryption
+📁 Project Structure
+SecureChat/
+│
+├── src/              # React source code
+├── dist/             # Production build
+├── index.html        # Entry HTML
+├── package.json
+├── tailwind.config.js
+├── vite.config.ts
+└── README.md
+🔐 Security Implementation
+1. Password Hashing (bcrypt)
+Passwords are never stored in plain text
+Before saving:
+const hashedPassword = await bcrypt.hash(password, 10);
+During login:
+Entered password is compared with stored hash
+2. Encryption (RSA)
 
-## React Compiler
+This application uses RSA (Asymmetric Encryption) via node-forge.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+How it works:
+Each user has:
+🔓 Public Key
+🔒 Private Key
+Message Flow:
+Sender writes a message
+Message is encrypted using receiver’s public key
+Encrypted message is stored
+Receiver decrypts using private key
 
-## Expanding the ESLint configuration
+✅ Only the intended receiver can read the message
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+▶️ How to Run the Project
+1. Clone the repository
+git clone https://github.com/Mahmoud-ABDALKream/SecureChat.git
+cd SecureChat
+2. Install dependencies
+npm install
+3. Run development server
+npm run dev
+4. Open in browser
+http://localhost:5173
+🧪 Application Workflow
+Register a new account
+Login securely
+Select another user
+Send a message
+Message is:
+🔒 Encrypted before storage
+🔓 Decrypted on display
+🎯 Learning Objectives
+Apply Cryptography concepts
+Understand hashing vs encryption
+Implement RSA encryption in real apps
+Build secure full-stack applications
+⚠️ Notes
+All stored messages are encrypted
+Passwords are securely hashed
+No sensitive data is stored in plain text
+📌 Future Improvements
+🔄 Real-time chat using Socket.io
+🔐 Encrypt private keys with user password
+🌙 Dark mode UI
+🔑 JWT authentication
+👨‍💻 Author
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Mahmoud Abdelkarim
