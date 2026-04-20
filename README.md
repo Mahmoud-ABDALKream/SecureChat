@@ -54,7 +54,6 @@ SecureChat/
 │   └── app.js  
 └── README.md  
 ```
-
 ## Installation  
 ### Step 1: Clone the Repository  
 ```bash
